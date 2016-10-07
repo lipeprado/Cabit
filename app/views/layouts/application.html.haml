@@ -1,0 +1,26 @@
+!!!
+%html
+%head
+  %title Cabit | Documentos
+  = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  = csrf_meta_tags
+
+%body
+  %header
+    .header_inner
+      = link_to "Cabit", root_path, id: "logo"
+
+      %nav
+        - if user_signed_in?
+          = link_to "Criar Documento", new_doc_path
+          = link_to "Deslogar", destroy_user_session_path, method: :delete
+
+        - else
+          = link_to "Logar", new_user_session_path
+          = link_to "Criar Conta", new_user_registration_path
+
+  %p.notice= notice
+  %p.alert= alert
+
+  =yield
